@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Pendaftaran</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+        }
+        
+        h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .radio-item,
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        button {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-submit {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-reset {
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .btn-reset:hover {
+            background: #e0e0e0;
+        }
+        
+        .error {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Formulir Pendaftaran</h1>
+        
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="nama">Nama Lengkap *</label>
+                <input type="text" id="nama" name="nama" required>
+                <span class="error" id="namaError">Nama harus diisi</span>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required>
+                <span class="error" id="emailError">Email harus valid</span>
+            </div>
+            
+            <div class="form-group">
+                <label for="telepon">Nomor Telepon *</label>
+                <input type="tel" id="telepon" name="telepon" required>
+                <span class="error" id="teleponError">Nomor telepon harus diisi</span>
+            </div>
+            
+            <div class="form-group">
+                <label for="tanggal">Tanggal Lahir *</label>
+                <input type="date" id="tanggal" name="tanggal" required>
+                <span class="error" id="tanggalError">Tanggal lahir harus diisi</span>
+            </div>
+            
+            <div class="form-group">
+                <label>Jenis Kelamin *</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="pria" name="gender" value="pria" required>
+                        <label for="pria" style="margin-bottom: 0; font-weight: normal;">Pria</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="wanita" name="gender" value="wanita">
+                        <label for="wanita" style="margin-bottom: 0; font-weight: normal;">Wanita</label>
+                    </div>
+                </div>
+                <span class="error" id="genderError">Pilih jenis kelamin</span>
+            </div>
+            
+            <div class="form-group">
+                <label for="pendidikan">Pendidikan Terakhir *</label>
+                <select id="pendidikan" name="pendidikan" required>
+                    <option value="">-- Pilih Pendidikan --</option>
+                    <option value="sd">SD</option>
+                    <option value="smp">SMP</option>
+                    <option value="sma">SMA/SMK</option>
+                    <option value="d3">Diploma (D3)</option>
+                    <option value="s1">Sarjana (S1)</option>
+                    <option value="s2">Magister (S2)</option>
+                    <option value="s3">Doktor (S3)</option>
+                </select>
+                <span class="error" id="pendidikanError">Pilih pendidikan terakhir</span>
+            </div>
+            
+            <div class="form-group">
+                <label>Minat/Hobi</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="olahraga" name="hobi" value="olahraga">
+                        <label for="olahraga" style="margin-bottom: 0; font-weight: normal;">Olahraga</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="musik" name="hobi" value="musik">
+                        <label for="musik" style="margin-bottom: 0; font-weight: normal;">Musik</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="seni" name="hobi" value="seni">
+                        <label for="seni" style="margin-bottom: 0; font-weight: normal;">Seni</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="membaca" name="hobi" value="membaca">
+                        <label for="membaca" style="margin-bottom: 0; font-weight: normal;">Membaca</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="traveling" name="hobi" value="traveling">
+                        <label for="traveling" style="margin-bottom: 0; font-weight: normal;">Traveling</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="alamat">Alamat</label>
+                <textarea id="alamat" name="alamat" placeholder="Masukkan alamat lengkap Anda..."></textarea>
+            </div>
+            
+            <div class="button-group">
+                <button type="submit" class="btn-submit">Submit</button>
+                <button type="reset" class="btn-reset">Reset</button>
+            </div>
+        </form>
+    </div>
+    
+    <script>
+        const form = document.getElementById('registrationForm');
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let isValid = true;
+            
+            // Validasi Nama
+            const nama = document.getElementById('nama');
+            if (nama.value.trim() === '') {
+                document.getElementById('namaError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('namaError').style.display = 'none';
+            }
+            
+            // Validasi Email
+            const email = document.getElementById('email');
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email.value)) {
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('emailError').style.display = 'none';
+            }
+            
+            // Validasi Telepon
+            const telepon = document.getElementById('telepon');
+            if (telepon.value.trim() === '') {
+                document.getElementById('teleponError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('teleponError').style.display = 'none';
+            }
+            
+            // Validasi Tanggal
+            const tanggal = document.getElementById('tanggal');
+            if (tanggal.value === '') {
+                document.getElementById('tanggalError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('tanggalError').style.display = 'none';
+            }
+            
+            // Validasi Gender
+            const gender = document.querySelector('input[name="gender"]:checked');
+            if (!gender) {
+                document.getElementById('genderError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('genderError').style.display = 'none';
+            }
+            
+            // Validasi Pendidikan
+            const pendidikan = document.getElementById('pendidikan');
+            if (pendidikan.value === '') {
+                document.getElementById('pendidikanError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('pendidikanError').style.display = 'none';
+            }
+            
+            if (isValid) {
+                // Ambil data hobi yang dipilih
+                const hobiCheckboxes = document.querySelectorAll('input[name="hobi"]:checked');
+                const hobiList = Array.from(hobiCheckboxes).map(cb => cb.value);
+                
+                // Tampilkan data yang diinput
+                const data = {
+                    nama: nama.value,
+                    email: email.value,
+                    telepon: telepon.value,
+                    tanggalLahir: tanggal.value,
+                    jenisKelamin: gender.value,
+                    pendidikan: pendidikan.options[pendidikan.selectedIndex].text,
+                    hobi: hobiList.join(', ') || 'Tidak ada',
+                    alamat: document.getElementById('alamat').value || 'Tidak diisi'
+                };
+                
+                alert('Data berhasil disubmit!\n\n' +
+                      'Nama: ' + data.nama + '\n' +
+                      'Email: ' + data.email + '\n' +
+                      'Telepon: ' + data.telepon + '\n' +
+                      'Tanggal Lahir: ' + data.tanggalLahir + '\n' +
+                      'Jenis Kelamin: ' + data.jenisKelamin + '\n' +
+                      'Pendidikan: ' + data.pendidikan + '\n' +
+                      'Hobi: ' + data.hobi + '\n' +
+                      'Alamat: ' + data.alamat);
+                
+                // Reset form setelah submit
+                form.reset();
+            }
+        });
+        
+        // Reset error messages when user starts typing
+        const inputs = form.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('input', function() {
+                const errorId = this.id + 'Error';
+                const errorElement = document.getElementById(errorId);
+                if (errorElement) {
+                    errorElement.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
